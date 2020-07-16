@@ -20,7 +20,7 @@ namespace ApplicationLogic.Services
             _siteRepository = new SiteRepository(configuration);
         }
 
-        public async Task AddTestResults(TestResultsAdditionDTO dto)
+        public async Task<int> AddTestResults(TestResultsAdditionDTO dto)
         {
             var site = (await _siteRepository.GetByAsync(s => s.SiteUrl == dto.SiteUrl)).FirstOrDefault();
 
@@ -40,6 +40,8 @@ namespace ApplicationLogic.Services
                 }
 
                 await _siteRepository.SaveChangesAsync();
+
+                return newSite.Id;
             }
             else
             {
@@ -53,6 +55,8 @@ namespace ApplicationLogic.Services
                 }
 
                 await _siteRepository.SaveChangesAsync();
+
+                return site.Id;
             }
         }
 

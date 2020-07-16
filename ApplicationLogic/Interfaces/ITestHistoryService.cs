@@ -7,7 +7,7 @@ namespace ApplicationLogic.Interfaces
     public interface ITestHistoryService
     {
         Task<IEnumerable<SiteGettingDTO>> GetAllSites();
-        Task AddTestResults(TestResultsAdditionDTO dto);
+        Task<int> AddTestResults(TestResultsAdditionDTO dto);
         Task<TestResultsGettingDTO> GetTestResultsForSite(int idSite);
     }
 }

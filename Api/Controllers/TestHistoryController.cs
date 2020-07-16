@@ -24,7 +24,7 @@ namespace Api.Controllers
             return Ok(response);
         }
 
-        [HttpGet("testResults", Name = "GetSiteTestResults")]
+        [HttpGet("testResults/{idSite}", Name = "GetSiteTestResults")]
         public async Task<IActionResult> GetSiteTestResults(int idSite)
         {
             var response = await _testHistoryService.GetTestResultsForSite(idSite);
@@ -35,9 +35,9 @@ namespace Api.Controllers
         [HttpPost("testResults", Name = "AddTestResults")]
         public async Task<IActionResult> CreateTestResults([FromBody] TestResultsAdditionDTO request)
         {
-            await _testHistoryService.AddTestResults(request);
+            var idSite = await _testHistoryService.AddTestResults(request);
 
-            return Ok();
+            return Ok(idSite);
         }
     }
 }
