@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Api.Contracts.Requests;
 using ApplicationLogic.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,10 +16,10 @@ namespace Api.Controllers
             _siteMapService = siteMapService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get(string url)
+        [HttpPost]
+        public async Task<IActionResult> GenerateSiteMap([FromBody] GenerateSiteMapRequest request)
         {
-            var siteMap = await _siteMapService.GenerateSiteMapFromUrl(url);
+            var siteMap = await _siteMapService.GenerateSiteMapFromUrl(request.Url);
 
             return Ok(siteMap);
         }

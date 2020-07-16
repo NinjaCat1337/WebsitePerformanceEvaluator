@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/")]
     [ApiController]
     public class TestController : ControllerBase
     {
@@ -24,7 +24,7 @@ namespace Api.Controllers
             return Ok(response);
         }
 
-        [HttpGet("site/{idSite}/testResults", Name = "GetAllSites")]
+        [HttpGet("testResults", Name = "GetSiteTestResults")]
         public async Task<IActionResult> GetSiteTestResults(int idSite)
         {
             var response = await _testHistoryService.GetTestResultsForSite(idSite);
