@@ -96,7 +96,7 @@ namespace ApplicationLogic.Services
                 MaxValue = allSiteUrlResponseTimes.Where(urt => urt.Url == uniqueUrl)
                         .Max(urt => urt.ResponseTimeMilliseconds)
             })
-                .ToList();
+                .OrderByDescending(urt => urt.MinValue).ToList();
 
             testResults.SiteMapUrls = uniqueUrlsStatistic;
 
